@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kahani & Coffee | Menu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="menu-body">
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">Kahani & Coffee</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
+    </ul>
+</nav>
+
+<!-- Header -->
+<section class="menu-hero">
+    <h1>Explore Our Menu ☕</h1>
+    <p class="meme">“Diet starts tomorrow… today we eat pizza 😌”</p>
+</section>
+
+<!-- Category Filter -->
+<div class="category-bar">
+    <button onclick="filterItems('all', this)">All</button>    
+    <button onclick="filterItems('coffee')">Coffee</button>
+    <button onclick="filterItems('pizza')">Pizza</button>
+    <button onclick="filterItems('pasta')">Pasta</button>
+    <button onclick="filterItems('dessert')">Dessert</button>
+    <button onclick="filterItems('combo')">Combos</button>
+    <button onclick="filterItems('snacks')">Snacks</button>
+</div>
+
+<div class="menu-container">
+
+    <!-- Food Items -->
+    <div class="food-grid" id="foodGrid"></div>
+
+    <!-- Cart -->
+   <div class="cart">
+    <h3>Your Order 🛒</h3>
+
+    <label>Table Number:</label>
+    <input type="number" id="tableNumber" placeholder="Enter Table No">
+
+    <ul id="cartItems"></ul>
+
+    <h4>Total: ₹<span id="total">0</span></h4>
+
+    <button class="order-btn" onclick="placeOrder()">
+        Place Order
+    </button>
+</div>
+
+</div>
+
+<script src="menu.js"></script>
+<div id="successPopup" class="popup">
+    <div class="popup-content">
+        <h2>🎉 Order Placed Successfully!</h2>
+        <p>Your delicious food is on the way ☕</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
+</body>
+</html>

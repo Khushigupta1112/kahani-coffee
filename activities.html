@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountain Café Activities</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== GLOBAL ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background: linear-gradient(
+      rgba(255,255,255,0.7),
+      rgba(248,245,240,0.95)
+    ),
+    url("images/1172402.jpg") center/cover no-repeat fixed;
+  color:#3a3a3a;
+}
+
+/* ===== HERO ===== */
+.hero{
+  height:60vh;
+  background:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),
+  img src="images/1172402.jpg" no-repeat center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero h1{
+  background:rgba(255,255,255,0.7);
+  padding:20px 40px;
+  border-radius:20px;
+  font-size:2.8rem;
+  animation:fadeIn 2s ease;
+}
+
+/* ===== SECTION ===== */
+.section-title{
+  text-align:center;
+  margin:50px 0 20px;
+  font-size:2.2rem;
+  color:#4b6f44;
+}
+
+/* ===== CARDS ===== */
+.activities{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+  padding:40px;
+}
+
+.card{
+  width:280px;
+  background:rgba(255,255,255,0.8);
+  padding:25px;
+  border-radius:25px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  transition:0.4s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.card:hover{
+  transform:translateY(-12px);
+}
+
+.card h3{
+  color:#4b6f44;
+  margin-bottom:10px;
+}
+
+.price{
+  margin:10px 0;
+  font-weight:600;
+  color:#8b6f47;
+}
+
+.free{
+  color:#4b6f44;
+}
+
+.card button{
+  padding:8px 18px;
+  border:none;
+  border-radius:20px;
+  background:linear-gradient(135deg,#8b6f47,#4b6f44);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card button:hover{
+  transform:scale(1.1);
+}
+
+/* ===== LIVE INFO ===== */
+.live-info{
+  margin-top:8px;
+  font-size:0.9rem;
+  color:#4b6f44;
+}
+
+/* ===== MODAL ===== */
+.modal{
+  display:none;
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.4);
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  width:300px;
+  animation:popup 0.4s ease;
+}
+
+.modal-content h3{
+  margin-bottom:15px;
+  color:#4b6f44;
+}
+
+.modal-content button{
+  margin-top:15px;
+  padding:6px 15px;
+  border:none;
+  border-radius:15px;
+  background:#4b6f44;
+  color:white;
+  cursor:pointer;
+}
+
+@keyframes popup{
+  from{transform:scale(0.5);}
+  to{transform:scale(1);}
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .activities{
+    flex-direction:column;
+    align-items:center;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>🌄 Experience Peaceful Activities in Nature</h1>
+</div>
+
+<h2 class="section-title">Explore Activities</h2>
+
+<!-- ACTIVITIES -->
+<div class="activities">
+
+  <!-- Canvas -->
+  <div class="card">
+    <h3>🎨 Canvas Painting</h3>
+    <p>Paint with mountain views.</p>
+    <div class="price">₹299</div>
+    <button onclick="book('Canvas Painting')">Book Now</button>
+    <div class="live-info" id="canvasSeats"></div>
+  </div>
+
+  <!-- Book Reading -->
+  <div class="card">
+    <h3>📚 Book Reading</h3>
+    <p>Silent reading cabin experience.</p>
+    <div class="price free">Free</div>
+    <button onclick="book('Book Reading')">Reserve</button>
+  </div>
+
+  <!-- Board Game -->
+  <div class="card">
+    <h3>🎲 Board Gaming</h3>
+    <p>Chess, UNO & Scrabble.</p>
+    <div class="price">₹199</div>
+    <button onclick="book('Board Gaming')">Book Now</button>
+  </div>
+
+  <!-- Weekend Mic -->
+  <div class="card">
+    <h3>🎤 Weekend Mic</h3>
+    <p>Fri–Sat Outdoor Open Mic.</p>
+    <div class="price">₹149</div>
+    <button onclick="book('Weekend Mic')">Book Pass</button>
+    <div class="live-info" id="micStatus"></div>
+  </div>
+
+  <!-- Stargazing -->
+  <div class="card">
+    <h3>🌌 Stargazing</h3>
+    <p>Guided telescope experience.</p>
+    <div class="price free">Free</div>
+    <button onclick="book('Stargazing')">Reserve</button>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3 id="modalTitle"></h3>
+    <p>Booking Confirmed 🌿</p>
+    <button onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+
+/* ===== LOGIC ===== */
+
+let canvasSeats = 6;
+
+function book(activity){
+
+  if(activity === "Canvas Painting"){
+    if(canvasSeats > 0){
+      canvasSeats--;
+    } else{
+      alert("No seats left for Canvas Painting 🎨");
+      return;
+    }
+  }
+
+  if(activity === "Weekend Mic"){
+    let day = new Date().getDay();
+    if(day !== 5 && day !== 6){
+      alert("Open Mic is only available on Friday & Saturday 🎤");
+      return;
+    }
+  }
+
+  document.getElementById("modalTitle").innerText = activity;
+  document.getElementById("modal").style.display = "flex";
+
+  updateLiveInfo();
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display = "none";
+}
+
+function updateLiveInfo(){
+  document.getElementById("canvasSeats").innerText =
+    "Seats Left: " + canvasSeats;
+
+  let day = new Date().getDay();
+  if(day === 5 || day === 6){
+    document.getElementById("micStatus").innerText =
+      "🎤 Weekend Event Active";
+  } else{
+    document.getElementById("micStatus").innerText =
+      "Available Only Fri–Sat";
+  }
+}
+
+updateLiveInfo();
+
+</script>
+
+</body>
+</html>

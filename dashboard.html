@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="menu-body">
+
+<div class="dashboard">
+
+<h1>Admin Dashboard ☕</h1>
+
+<div class="stats">
+
+<div class="card-box">
+<h2>Total Orders</h2>
+<p id="totalOrders">0</p>
+</div>
+
+<div class="card-box">
+<h2>Total Revenue</h2>
+<p id="revenue">₹0</p>
+</div>
+
+</div>
+
+<h2>Latest Orders</h2>
+
+<h2>Live Orders</h2>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Table</th>
+<th>Amount</th>
+<th>Payment</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="ordersTable"></tbody>
+
+</table>
+
+<script src="admin.js"></script>
+
+<tr>
+<td>#101</td>
+<td>5</td>
+<td>₹450</td>
+<td>Preparing</td>
+</tr>
+
+<tr>
+<td>#102</td>
+<td>2</td>
+<td>₹320</td>
+<td>Ready</td>
+</tr>
+
+</table>
+
+</div>
+
+</body>
+</html>

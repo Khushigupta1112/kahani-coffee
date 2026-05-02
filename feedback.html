@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback | Kahani & Coffee</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== BODY ===== */
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(rgba(255,255,255,0.7),rgba(248,245,240,0.95)),
+  url("bg.jpg") center/cover no-repeat fixed;
+  color:#3a3a3a;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:500px;
+  margin:80px auto;
+  background:rgba(255,255,255,0.85);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  backdrop-filter:blur(8px);
+  animation:fadeIn 1s ease;
+}
+
+h1{
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  color:#4b6f44;
+  margin-bottom:10px;
+}
+
+p{
+  text-align:center;
+  font-size:14px;
+  margin-bottom:20px;
+}
+
+/* ===== INPUT ===== */
+input, textarea{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ddd;
+  outline:none;
+}
+
+/* ===== STARS ===== */
+.stars{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  font-size:24px;
+  cursor:pointer;
+  margin:10px 0;
+}
+
+.star{
+  color:#ccc;
+  transition:0.3s;
+}
+
+.star.active{
+  color:#f4b400;
+  transform:scale(1.2);
+}
+
+/* ===== BUTTON ===== */
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(135deg,#8b6f47,#4b6f44);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+/* ===== POPUP ===== */
+.popup{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.4);
+  justify-content:center;
+  align-items:center;
+}
+
+.popup-content{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  animation:fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>💬 Your Feedback</h1>
+  <p>We'd love to hear your experience ☕</p>
+
+  <input type="text" placeholder="Your Name">
+
+  <!-- STAR RATING -->
+  <div class="stars">
+    <span class="star" onclick="rate(1)">★</span>
+    <span class="star" onclick="rate(2)">★</span>
+    <span class="star" onclick="rate(3)">★</span>
+    <span class="star" onclick="rate(4)">★</span>
+    <span class="star" onclick="rate(5)">★</span>
+  </div>
+
+  <textarea rows="4" placeholder="Write your feedback..."></textarea>
+
+  <button onclick="submitFeedback()">Submit Feedback</button>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h3>Thank You 🌿</h3>
+    <p>Your feedback means a lot to us ☕</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
+</div>
+<h2 style="text-align:center; margin-top:40px;">Customer Reviews</h2> <div id="reviews"></div>
+
+<script>
+
+let rating = 0; // ⭐ IMPORTANT
+
+// ⭐ STAR CLICK FUNCTION
+function rate(num){
+  rating = num;
+
+  let stars = document.querySelectorAll(".star");
+
+  stars.forEach((star, index)=>{
+    if(index < num){
+      star.classList.add("active");
+    } else {
+      star.classList.remove("active");
+    }
+  });
+}
+
+// 💾 SUBMIT FEEDBACK
+function submitFeedback(){
+
+  let name = document.querySelector("input").value;
+  let message = document.querySelector("textarea").value;
+
+  if(name === "" || message === "" || rating === 0){
+    alert("Please fill all fields ⭐");
+    return;
+  }
+
+  let feedback = {
+    name: name,
+    message: message,
+    rating: rating,
+    time: new Date().toLocaleString()
+  };
+
+  let allFeedback = JSON.parse(localStorage.getItem("feedbacks")) || [];
+
+  allFeedback.push(feedback);
+
+  localStorage.setItem("feedbacks", JSON.stringify(allFeedback));
+
+  loadReviews(); // 🔥 show instantly
+
+  document.getElementById("popup").style.display = "flex";
+}
+
+// ❌ CLOSE POPUP
+function closePopup(){
+  document.getElementById("popup").style.display = "none";
+}
+
+// 👀 LOAD REVIEWS
+function loadReviews(){
+
+  let data = JSON.parse(localStorage.getItem("feedbacks")) || [];
+  let container = document.getElementById("reviews");
+
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  data.forEach(f => {
+    let div = document.createElement("div");
+
+    div.style.background = "#fff";
+    div.style.margin = "10px";
+    div.style.padding = "15px";
+    div.style.borderRadius = "10px";
+
+    div.innerHTML = `
+      <strong>${f.name}</strong> ⭐${f.rating} <br>
+      <p>${f.message}</p>
+      <small>${f.time}</small>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+// Load on page open
+loadReviews();
+document.querySelector("input").value = "";
+document.querySelector("textarea").value = "";
+rating = 0;
+
+</script>
+
+</body>
+</html>

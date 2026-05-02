@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment | Kahani & Coffee</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="menu-body">
+
+<div class="payment-box">
+
+<h1>Complete Payment 💳</h1>
+
+<div id="billSummary"></div>
+
+<hr>
+
+<h3>Select Payment Method</h3>
+
+<div class="pay-option">
+<label>
+<input type="radio" name="pay" value="Cash" checked onclick="showMethod()">
+Cash on Counter
+</label>
+</div>
+
+<div class="pay-option">
+<label>
+<input type="radio" name="pay" value="UPI" onclick="showMethod()">
+UPI Payment
+</label>
+</div>
+
+<div class="pay-option">
+<label>
+<input type="radio" name="pay" value="Card" onclick="showMethod()">
+Card Payment
+</label>
+</div>
+
+<div id="paymentDetails"></div>
+
+<button onclick="confirmOrder()">Confirm Payment</button>
+
+</div>
+
+<script src="payment.js"></script>
+
+</body>
+</html>

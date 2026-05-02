@@ -1,0 +1,112 @@
+import React from "react";
+
+function App() {
+  return (
+    <div className="font-sans">
+
+      {/* Navbar */}
+      <nav className="flex justify-between items-center p-6 shadow-md">
+        <h1 className="text-2xl font-bold text-green-600">DineQR</h1>
+        <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+          Get Started
+        </button>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="text-center py-20 bg-gradient-to-r from-green-50 to-green-100">
+        <h2 className="text-5xl font-bold mb-6">
+          Scan. Order. Pay. Enjoy.
+        </h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+          A smart QR-based ordering system for restaurants and cafes.
+          Customers scan from their table, place orders instantly,
+          and pay digitally — no waiting required.
+        </p>
+        <button className="bg-green-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-green-700">
+          Watch Demo
+        </button>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-16 px-6 text-center">
+        <h3 className="text-3xl font-bold mb-12">How It Works</h3>
+
+        <div className="grid md:grid-cols-4 gap-8">
+          <div>
+            <h4 className="text-xl font-semibold mb-2">📱 Scan QR</h4>
+            <p className="text-gray-600">
+              Customers scan the table QR code.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-xl font-semibold mb-2">🍔 Browse Menu</h4>
+            <p className="text-gray-600">
+              View digital menu with categories.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-xl font-semibold mb-2">🛒 Order & Pay</h4>
+            <p className="text-gray-600">
+              Add items to cart and pay online.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-xl font-semibold mb-2">👨‍🍳 Kitchen Ready</h4>
+            <p className="text-gray-600">
+              Kitchen receives instant order updates.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="bg-gray-50 py-16 px-6 text-center">
+        <h3 className="text-3xl font-bold mb-12">Powerful Features</h3>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="p-6 bg-white shadow rounded-xl">
+            <h4 className="font-semibold text-lg mb-2">⚡ Fast Service</h4>
+            <p className="text-gray-600">
+              Reduce waiting time and improve customer satisfaction.
+            </p>
+          </div>
+
+          <div className="p-6 bg-white shadow rounded-xl">
+            <h4 className="font-semibold text-lg mb-2">💳 Secure Payments</h4>
+            <p className="text-gray-600">
+              Safe and seamless digital transactions.
+            </p>
+          </div>
+
+          <div className="p-6 bg-white shadow rounded-xl">
+            <h4 className="font-semibold text-lg mb-2">📊 Smart Dashboard</h4>
+            <p className="text-gray-600">
+              Real-time order tracking and sales reports.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-16 px-6 text-center">
+        <h3 className="text-3xl font-bold mb-6">About DineQR</h3>
+        <p className="max-w-3xl mx-auto text-gray-600">
+          DineQR is a full-stack MERN-based smart restaurant ordering system.
+          It enables customers to scan QR codes, browse menus, place orders,
+          and complete payments directly from their seats.
+        </p>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-green-600 text-white text-center py-6">
+        <p>© 2026 DineQR | Smart Dining Made Simple</p>
+      </footer>
+
+    </div>
+  );
+}
+
+export default App;
