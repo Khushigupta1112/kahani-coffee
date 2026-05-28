@@ -279,25 +279,19 @@ displayItems(filtered);
 // Add To Cart
 function addToCart(name,price){
 
-cart.push({name,price});
-updateCart();
+    cart.push({name,price});
+    updateCart();
 
-localStorage.setItem("cart",JSON.stringify(cart));
+    localStorage.setItem("cart",JSON.stringify(cart));
 
-showToast(name + " added to cart ✅");
-if(window.innerWidth < 768){
-    document.querySelector('.cart').scrollIntoView({
-        behavior:'smooth'
-    });
-}
+    showToast(name + " added to cart ✅");
 
-// Update mobile cart bar
-let totalAmount = cart.reduce((sum,item)=>sum+item.price,0);
+    // Update mobile cart bar
+    let totalAmount = cart.reduce((sum,item)=>sum+item.price,0);
 
-document.getElementById("cartBar").style.display = "block";
-document.getElementById("cartBarCount").innerText = cart.length;
-document.getElementById("cartBarTotal").innerText = totalAmount;
-
+    document.getElementById("cartBar").style.display = "block";
+    document.getElementById("cartBarCount").innerText = cart.length;
+    document.getElementById("cartBarTotal").innerText = totalAmount;
 }
 
 // Update Cart
@@ -384,3 +378,13 @@ function scrollToCart(){
         behavior:'smooth'
     });
 }
+
+// Auto detect table number from QR URL
+window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const table = params.get("table");
+
+    if (table) {
+        document.getElementById("tableNumber").value = table;
+    }
+});
