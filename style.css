@@ -638,3 +638,56 @@ cursor:pointer;
 table button:hover{
 background:#a0522d;
 }
+.cart-bar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#8B4513;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-weight:bold;
+    z-index:9999;
+    cursor:pointer;
+    display:none;
+}
+
+.view-cart{
+    margin-left:10px;
+    text-decoration:underline;
+}
+/* Mobile Cart Bar */
+.cart-bar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#8B4513;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-weight:bold;
+    z-index:9999;
+    cursor:pointer;
+    display:none;
+}
+
+.view-cart{
+    margin-left:10px;
+    text-decoration:underline;
+}
+
+/* Toast */
+.toast{
+    position:fixed;
+    bottom:70px;
+    right:20px;
+    background:#28a745;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    display:none;
+    z-index:10000;
+    font-weight:bold;
+}

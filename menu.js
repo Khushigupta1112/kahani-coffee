@@ -283,6 +283,21 @@ cart.push({name,price});
 updateCart();
 
 localStorage.setItem("cart",JSON.stringify(cart));
+
+showToast(name + " added to cart ✅");
+if(window.innerWidth < 768){
+    document.querySelector('.cart').scrollIntoView({
+        behavior:'smooth'
+    });
+}
+
+// Update mobile cart bar
+let totalAmount = cart.reduce((sum,item)=>sum+item.price,0);
+
+document.getElementById("cartBar").style.display = "block";
+document.getElementById("cartBarCount").innerText = cart.length;
+document.getElementById("cartBarTotal").innerText = totalAmount;
+
 }
 
 // Update Cart
@@ -352,4 +367,20 @@ localStorage.setItem("orders", JSON.stringify(orders));
 
 window.location="payment.html";
 
+}
+function showToast(message){
+    const toast = document.getElementById("toast");
+
+    toast.innerText = message;
+    toast.style.display = "block";
+
+    setTimeout(()=>{
+        toast.style.display = "none";
+    },2000);
+}
+
+function scrollToCart(){
+    document.querySelector('.cart').scrollIntoView({
+        behavior:'smooth'
+    });
 }
