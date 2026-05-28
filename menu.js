@@ -253,7 +253,7 @@ foodGrid.innerHTML += `
 
 <p class="price">₹${item.price}</p>
 
-<button onclick='addToCart("${item.name}",${item.price})'>
+<button type="button" onclick='addToCart("${item.name}",${item.price})'>
 Add to Cart
 </button>
 
@@ -286,12 +286,14 @@ function addToCart(name,price){
 
     showToast(name + " added to cart ✅");
 
-    // Update mobile cart bar
     let totalAmount = cart.reduce((sum,item)=>sum+item.price,0);
 
-    document.getElementById("cartBar").style.display = "block";
+    const cartBar = document.getElementById("cartBar");
+
+    cartBar.style.display = "block";
     document.getElementById("cartBarCount").innerText = cart.length;
     document.getElementById("cartBarTotal").innerText = totalAmount;
+
 }
 
 // Update Cart
