@@ -11,6 +11,13 @@
 
 <h1>Admin Dashboard ☕</h1>
 
+<p style="background:rgba(255,165,0,0.2); padding:10px; border-radius:8px; margin-bottom:20px; font-size:14px;">
+    ⚠️ <strong>Note:</strong> This dashboard reads from browser localStorage only.
+    Orders shown here are from the current browser session on this device —
+    not from a real database. Firebase Firestore integration is required for
+    production use (Phase 2).
+</p>
+
 <div class="stats">
 
 <div class="card-box">
@@ -25,9 +32,7 @@
 
 </div>
 
-<h2>Latest Orders</h2>
-
-<h2>Live Orders</h2>
+<h2>Live Orders (Current Session)</h2>
 
 <table>
 <thead>
@@ -46,22 +51,6 @@
 </table>
 
 <script src="admin.js"></script>
-
-<tr>
-<td>#101</td>
-<td>5</td>
-<td>₹450</td>
-<td>Preparing</td>
-</tr>
-
-<tr>
-<td>#102</td>
-<td>2</td>
-<td>₹320</td>
-<td>Ready</td>
-</tr>
-
-</table>
 
 </div>
 

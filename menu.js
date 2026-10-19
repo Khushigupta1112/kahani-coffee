@@ -247,7 +247,8 @@ foodGrid.innerHTML += `
 
 <div class="food-card">
 
-<img src="${item.image}" alt="${item.name}">
+<img src="${item.image}" alt="${item.name}"
+     onerror="this.style.display='none'">
 
 <h3>${item.name}</h3>
 
@@ -265,15 +266,28 @@ Add to Cart
 
 }
 displayItems(foodItems);
+// Mark "All" button as active on initial load
+document.addEventListener('DOMContentLoaded', function(){
+    var firstBtn = document.querySelector('.category-bar button');
+    if(firstBtn) firstBtn.classList.add('active');
+});
+
 
 // Filter Category
-function filterItems(category){
-if(category=="all"){
-displayItems(foodItems);
-}else{
-let filtered = foodItems.filter(item=>item.category==category);
-displayItems(filtered);
-}
+function filterItems(category, clickedBtn){
+    // Update active button highlight
+    if(clickedBtn){
+        document.querySelectorAll('.category-bar button').forEach(function(btn){
+            btn.classList.remove('active');
+        });
+        clickedBtn.classList.add('active');
+    }
+    if(category=="all"){
+        displayItems(foodItems);
+    }else{
+        let filtered = foodItems.filter(item=>item.category==category);
+        displayItems(filtered);
+    }
 }
 
 // Add To Cart

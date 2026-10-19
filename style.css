@@ -146,7 +146,6 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 40px;
-    background-color: #c18863;
 }
 
 .card {
@@ -653,30 +652,7 @@ background:#a0522d;
     display:none;
 }
 
-.view-cart{
-    margin-left:10px;
-    text-decoration:underline;
-}
-/* Mobile Cart Bar */
-.cart-bar{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:#8B4513;
-    color:white;
-    padding:15px;
-    text-align:center;
-    font-weight:bold;
-    z-index:9999;
-    cursor:pointer;
-    display:none;
-}
-
-.view-cart{
-    margin-left:10px;
-    text-decoration:underline;
-}
+/* Mobile Cart Bar — defined once above */
 
 /* Toast */
 .toast{
