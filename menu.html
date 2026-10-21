@@ -26,38 +26,81 @@
 
 <!-- Category Filter -->
 <div class="category-bar">
-    <button onclick="filterItems('all', this)">All</button>    
-    <button onclick="filterItems('coffee')">Coffee</button>
-    <button onclick="filterItems('pizza')">Pizza</button>
-    <button onclick="filterItems('pasta')">Pasta</button>
-    <button onclick="filterItems('dessert')">Dessert</button>
-    <button onclick="filterItems('combo')">Combos</button>
-    <button onclick="filterItems('snacks')">Snacks</button>
+    <button onclick="filterItems('all', this)">All</button>
+    <button onclick="filterItems('coffee', this)">Coffee</button>
+    <button onclick="filterItems('pizza', this)">Pizza</button>
+    <button onclick="filterItems('pasta', this)">Pasta</button>
+    <button onclick="filterItems('dessert', this)">Dessert</button>
+    <button onclick="filterItems('combo', this)">Combos</button>
+    <button onclick="filterItems('snacks', this)">Snacks</button>
 </div>
 
 <div class="menu-container">
 
     <!-- Food Items -->
-    <div class="food-grid" id="foodGrid"></div>
+    <main class="food-grid" id="foodGrid" aria-label="Café Menu Items"></main>
 
-    <!-- Cart -->
-   <div class="cart">
-    <h3>Your Order 🛒</h3>
+    <!-- Cart Sidebar (Desktop) / Cart Drawer (Mobile) -->
+    <aside class="cart" id="cartPanel" aria-label="Your Order Cart">
+        <div class="cart-header">
+            <div class="cart-title-wrap">
+                <h3>Your Order ☕</h3>
+                <span class="cart-badge" id="cartBadge">0 items</span>
+            </div>
+            <button type="button" class="cart-close-btn" id="closeCartBtn" onclick="closeCartDrawer()" aria-label="Close cart drawer">✕</button>
+        </div>
 
-    <label>Table Number:</label>
-      <input type="number" id="tableNumber" readonly>
-    <ul id="cartItems"></ul>
+        <div class="cart-body">
+            <div id="emptyCartState" class="empty-cart-state">
+                <span class="empty-cart-icon">🛒</span>
+                <p class="empty-cart-title">Your cart is empty</p>
+                <p class="empty-cart-desc">Add delicious handcrafted coffee or snacks to start your order.</p>
+            </div>
+            <ul id="cartItems" class="cart-items-list"></ul>
+        </div>
 
-    <h4>Total: ₹<span id="total">0</span></h4>
+        <div class="cart-footer" id="cartFooter">
+            <div class="table-input-group">
+                <label for="tableNumber" class="table-label">Table Number <span class="required-star">*</span></label>
+                <input type="number" id="tableNumber" name="tableNumber" min="1" max="99" step="1" placeholder="e.g. 5" class="table-input" required>
+                <div id="tableError" class="input-error-msg" role="alert" style="display:none;"></div>
+            </div>
 
-    <button class="order-btn" onclick="placeOrder()">
-        Place Order
-    </button>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span>₹<span id="subtotal">0</span></span>
+                </div>
+                <div class="summary-row total-row">
+                    <span>Grand Total:</span>
+                    <span>₹<span id="total">0</span></span>
+                </div>
+            </div>
+
+            <button type="button" class="order-btn" id="placeOrderBtn" onclick="placeOrder()">
+                Proceed to Payment ➔
+            </button>
+        </div>
+    </aside>
+
 </div>
 
+<!-- Backdrop Overlay for Mobile Cart Drawer -->
+<div id="cartOverlay" class="cart-overlay" onclick="closeCartDrawer()" aria-hidden="true"></div>
+
+<!-- Mobile Bottom Cart Bar -->
+<div id="cartBar" class="cart-bar" onclick="openCartDrawer()" role="button" tabindex="0" aria-label="Open Cart Drawer">
+    <div class="cart-bar-left">
+        <span class="cart-bar-icon">🛒</span>
+        <span id="cartBarCount">0</span> Items
+    </div>
+    <div class="cart-bar-right">
+        ₹<span id="cartBarTotal">0</span>
+        <span class="view-cart-btn">View Order ➔</span>
+    </div>
 </div>
 
-<script src="menu.js?v=2"></script>
+<script src="menu.js?v=3"></script>
 <div id="successPopup" class="popup">
     <div class="popup-content">
         <h2>🎉 Order Placed Successfully!</h2>
@@ -65,12 +108,7 @@
         <button onclick="closePopup()">Close</button>
     </div>
 </div>
-<div id="cartBar" class="cart-bar" onclick="scrollToCart()">
-    🛒 <span id="cartBarCount">0</span> Items |
-    ₹<span id="cartBarTotal">0</span>
-    <span class="view-cart">View Cart</span>
-</div>
 
-<div id="toast" class="toast"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
