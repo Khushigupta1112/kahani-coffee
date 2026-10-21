@@ -345,11 +345,12 @@ function displayItems(items) {
     const categoryTag = getCategoryLabel(item.category);
     const escapedForJs = escapeJsString(item.name);
     const categoryForJs = escapeJsString(item.category);
+    const safeSrc = encodeURI(item.image);
 
     foodGrid.innerHTML += `
       <article class="food-card" style="--card-index: ${index};">
         <div class="food-card-img-wrap">
-          <img src="${item.image}"
+          <img src="${safeSrc}"
                alt="${safeName}"
                loading="lazy"
                onerror="handleImageError(this, '${escapedForJs}', '${categoryForJs}')">
