@@ -67,8 +67,10 @@ if (!latest) {
     if (Array.isArray(latest.items) && latest.items.length > 0) {
         itemsHtml = "<ul style='list-style:none; padding:0; margin:10px 0;'>";
         latest.items.forEach(function(item){
-            itemsHtml += `<li style="display:flex; justify-content:space-between; padding:4px 0;">
-                <span>${item.name}</span><span>₹${item.price}</span>
+            var qtyStr = item.quantity && item.quantity > 1 ? ` (x${item.quantity})` : (item.quantity === 1 ? " (x1)" : "");
+            var linePrice = (item.quantity ? item.quantity * item.price : item.price) || 0;
+            itemsHtml += `<li style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+                <span>${item.name}${qtyStr}</span><span>₹${linePrice}</span>
             </li>`;
         });
         itemsHtml += "</ul>";
@@ -78,7 +80,7 @@ if (!latest) {
         <h3>Order Summary</h3>
         <p>Table No: ${latest.table || "—"}</p>
         ${itemsHtml}
-        <p><strong>Total: ₹${latest.amount}</strong></p>
+        <p style="margin-top:10px; font-size:18px;"><strong>Total: ₹${latest.amount}</strong></p>
         <hr>`;
 }
 
